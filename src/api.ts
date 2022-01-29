@@ -69,9 +69,8 @@ export class GhostMarketAPI {
     this.logger = logger || ((arg: string) => arg);
   }
 
-  /** Get users from  from the orderbook, throwing if none is found.
-   * @param query Query to use for getting orders. A subset of parameters
-   *  on the `OrderJSON` type is supported
+  /** Get users from the GhostMarket userbase API, throwing if none is found.
+   * @param query Query to use for getting users.
    */
   public async getUsers(
     query: UsersQuery = {},
@@ -89,6 +88,21 @@ export class GhostMarketAPI {
       ...query,
     });
 
+    const json = result as Record<string, unknown>;
+    return json;
+  }
+
+  /** Check if user exists on GhostMarket, returns True or False.
+   * @param username Check if this username already exists on GhostMarket.
+   */
+  public async getCheckUserExists(
+    username: string,
+  ): Promise<Record<string, unknown>> {
+    console.log('Inside getCheckUserExists!');
+    const result = await this.get(`${API_PATH}/userexists/`, {
+      username: username,
+    });
+  
     const json = result as Record<string, unknown>;
     return json;
   }
