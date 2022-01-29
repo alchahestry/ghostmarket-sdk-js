@@ -78,3 +78,21 @@ export interface OrderbookResponse {
   orders: OrderJSON[];
   count: number;
 }
+
+/**
+ * Query interface for Users
+ */
+export interface UsersQuery {
+  address?: string;
+  chain?: string;
+  issuer?: string;
+  limit?: number;
+  offchain_name?: string;
+  offchain_name_partial?: string;
+  offset?: number;
+  order_by?: string;
+  order_direction?: string;
+  verified?: boolean;
+  with_sales_statistics?: number;
+  with_total?: number;
+}

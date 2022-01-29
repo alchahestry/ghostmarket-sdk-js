@@ -12,6 +12,7 @@ import {
   GhostMarketAPIConfig,
   Network,
   OrderQuery,
+  UsersQuery,
 } from './types';
 
 export class GhostMarketAPI {
@@ -68,11 +69,54 @@ export class GhostMarketAPI {
     this.logger = logger || ((arg: string) => arg);
   }
 
+  /** Get users from  from the orderbook, throwing if none is found.
+   * @param query Query to use for getting orders. A subset of parameters
+   *  on the `OrderJSON` type is supported
+   */
+  public async getUsers(
+    query: UsersQuery = {},
+    order_by: string = 'join_order',
+    order_direction: string = 'asc',
+    with_sales_statistics: number = 0,
+    with_total: number = 0,
+    limit: number = 50,
+    page: number = 1,
+  ): Promise<Record<string, unknown>> {
+    console.log('Inside getUsers!');
+    const result = await this.get(`${API_PATH}/users/`, {
+      limit: limit,
+      offset: (page - 1) * limit,
+      ...query,
+    });
+
+    const json = result as Record<string, unknown>;
+    return json;
+  }
+
   /** Get orders from the orderbook, throwing if none is found.
    * @param query Query to use for getting orders. A subset of parameters
    *  on the `OrderJSON` type is supported
    */
   public async getOrders(
+    query: OrderQuery = {},
+    page = 1,
+  ): Promise<Record<string, unknown>> {
+    console.log('Inside getOrders!');
+    const result = await this.get(`${API_PATH}/openorders/`, {
+      limit: this.pageSize,
+      offset: (page - 1) * this.pageSize,
+      ...query,
+    });
+
+    const json = result as Record<string, unknown>;
+    return json;
+  }
+
+  /** Get order from the orderbook, throwing if none is found.
+   * @param query Query to use for getting orders. A subset of parameters
+   *  on the `OrderJSON` type is supported
+   */
+  public async getOrder(
     query: OrderQuery = {},
     page = 1,
   ): Promise<Record<string, unknown>> {
