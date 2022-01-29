@@ -74,6 +74,24 @@ export interface OrderJSON {
   origin_address: string;
 }
 
+/**
+ * Query interface for Collections
+ */
+export interface CollectionsQuery {
+  chain?: string;
+  collection_slug?: string;
+  issuer?: string;
+  limit?: number;
+  nft_name?: string;
+  offset?: number;
+  order_by?: string;
+  order_direction?: string;
+  owner?: string;
+  quote_symbol?: string;
+  series_id?: string;
+  with_total?: number;
+}
+
 export interface OrderbookResponse {
   orders: OrderJSON[];
   count: number;

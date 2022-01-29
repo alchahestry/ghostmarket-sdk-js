@@ -9,6 +9,7 @@ import {
   SITE_HOST_RINKEBY,
 } from './constants';
 import {
+  CollectionsQuery,
   GhostMarketAPIConfig,
   Network,
   OrderQuery,
@@ -69,22 +70,44 @@ export class GhostMarketAPI {
     this.logger = logger || ((arg: string) => arg);
   }
 
+  /** Get NFT collection available on the GhostMarket marketplace, throwing if none is found.
+   * @param query Query to use for getting users.
+   */
+  public async getCollections(
+    query: CollectionsQuery = {},
+    offset: number = 0,
+    order_by: string = 'id',
+    order_direction: string = 'asc',
+    with_total: number = 1,
+    limit: number = 50,
+  ): Promise<Record<string, unknown>> {
+    console.log('Inside getCollections!');
+    const result = await this.get(`${API_PATH}/collections/`, {
+      limit: limit,
+      offset: offset,
+      ...query,
+    });
+
+    const json = result as Record<string, unknown>;
+    return json;
+  }
+
   /** Get users from the GhostMarket userbase API, throwing if none is found.
    * @param query Query to use for getting users.
    */
   public async getUsers(
     query: UsersQuery = {},
+    offset: number = 0,
     order_by: string = 'join_order',
     order_direction: string = 'asc',
     with_sales_statistics: number = 0,
     with_total: number = 0,
     limit: number = 50,
-    page: number = 1,
   ): Promise<Record<string, unknown>> {
     console.log('Inside getUsers!');
     const result = await this.get(`${API_PATH}/users/`, {
       limit: limit,
-      offset: (page - 1) * limit,
+      offset: offset,
       ...query,
     });
 
