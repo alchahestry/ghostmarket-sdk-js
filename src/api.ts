@@ -11,6 +11,7 @@ import {
 import {
   AssetsQuery,
   CollectionsQuery,
+  EventsQuery,
   GhostMarketAPIConfig,
   Network,
   OrderQuery,
@@ -123,6 +124,41 @@ export class GhostMarketAPI {
       offset: offset,
       order_by: order_by,
       order_direction: order_direction,
+      with_total: with_total,
+      ...query,
+    });
+
+    const json = result as Record<string, unknown>;
+    return json;
+  }
+
+  /** Get NFT serices available on the GhostMarket marketplace, throwing if none is found.
+   * @param query Query to use for getting users.
+   */
+  public async getEvents(
+    query: EventsQuery = {},
+    offset: number = 0,
+    order_by: string = 'id',
+    order_direction: string = 'asc',
+    limit: number = 50,
+    show_events: string = 'not_hidden',
+    fiat_currency: string = 'USD',
+    grouping: number = 0,
+    with_metadata: number = 0,
+    with_series: number = 0,
+    with_total: number = 0,
+  ): Promise<Record<string, unknown>> {
+    console.log('Inside getEvents!');
+    const result = await this.get(`${API_PATH}/events/`, {
+      limit: limit,
+      offset: offset,
+      order_by: order_by,
+      order_direction: order_direction,
+      show_events: show_events,
+      fiat_currency: fiat_currency,
+      grouping: grouping,
+      with_metadata: with_metadata,
+      with_series: with_series,
       with_total: with_total,
       ...query,
     });

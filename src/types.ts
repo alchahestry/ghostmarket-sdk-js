@@ -139,6 +139,37 @@ export interface CollectionsQuery {
   with_total?: number;
 }
 
+/**
+ * Query interface for Events
+ */
+ export interface EventsQuery {
+  address?: string;
+  address_partial?: string;
+  chain?: string;
+  collection_slug?: string;
+  contract?: string;
+  date_day?: string;
+  date_less?: string;
+  date_greater?: string;
+  event_kind?: string;
+  event_kind_partial?: string;
+  fiat_currency?: string;
+  grouping?: number;
+  issuer?: string;
+  limit?: number;
+  nft_description_partial?: string;
+  nft_name_partial?: string;
+  nsfw_mode?: string;
+  offset?: number;
+  order_by?: string;
+  order_direction?: string;
+  show_events?: string;
+  token_id?: string;
+  with_metadata?: number;
+  with_series?: number;
+  with_total?: number;
+}
+
 export interface OrderbookResponse {
   orders: OrderJSON[];
   count: number;
