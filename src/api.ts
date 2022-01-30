@@ -17,6 +17,7 @@ import {
   OrderQuery,
   SeriesQuery,
   StatisticsQuery,
+  TokenURIQuery,
   UsersQuery,
 } from './types';
 
@@ -270,6 +271,21 @@ export class GhostMarketAPI {
       with_marketplace_weekly_stats: with_marketplace_weekly_stats,
       with_marketplace_monthly_stats: with_marketplace_monthly_stats,
       with_marketplace_total_stats: with_marketplace_total_stats,
+      ...query,
+    });
+
+    const json = result as Record<string, unknown>;
+    return json;
+  }
+
+  /** Get NFT Token URI, throwing if none is found.
+   * @param query Query to use for getting Token URI.
+   */
+  public async getTokenURI(
+    query: TokenURIQuery = {},
+  ): Promise<Record<string, unknown>> {
+    console.log('Inside getTokenURI!');
+    const result = await this.get(`${API_PATH}/tokenuri/`, {
       ...query,
     });
 

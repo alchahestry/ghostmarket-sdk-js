@@ -217,6 +217,15 @@ export interface SeriesQuery {
 }
 
 /**
+ * Query interface for TokenURI
+ */
+export interface TokenURIQuery {
+  chain?: string;
+  contract?: string;
+  token_id?: string;
+}
+
+/**
  * Query interface for Users
  */
 export interface UsersQuery {
