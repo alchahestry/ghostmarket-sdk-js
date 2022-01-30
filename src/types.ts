@@ -40,15 +40,6 @@ export interface Order {
 }
 
 /**
- * Basic information about orders on GhostMarket
- */
-export interface OrderBase {
-  offset?: number | string;
-  limit?: number;
-  with_deleted?: boolean;
-}
-
-/**
  * Query interface for Orders
  */
 export interface OrderQuery {
