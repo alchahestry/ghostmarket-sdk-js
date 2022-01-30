@@ -30,7 +30,7 @@ Ghost Market is constantly innovating. This means the underlying API that this S
  
 * Create Mint - POST - `/api/v1/createopenmint`
 * Delete Mint -  POST - `/api/v1/deleteopenmint`
-* List open mints - GET - `/api/v1/openmintings`
+* ~~List open mints - GET - `/api/v1/openmintings`~~
 * List open mints - GET - `/api/v1/getopenmintings`
 
 
