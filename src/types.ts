@@ -75,6 +75,53 @@ export interface OrderJSON {
 }
 
 /**
+ * Query interface for Assets
+ */
+export interface AssetsQuery {
+  auction_started?: string;
+  auction_state?: string;
+  auction_type?: string;
+  bidder?: string;
+  chain?: string;
+  chain_name?: string;
+  collection_slug?: string;
+  contract?: string;
+  contract_id?: string;
+  creator?: string;
+  fiat_currency?: string;
+  filter1name?: string;
+  filter1value?: string;
+  filter2name?: string;
+  filter2value?: string;
+  filter3name?: string;
+  filter3value?: string;
+  filter4name?: string;
+  filter4value?: string;
+  filter5name?: string;
+  filter5value?: string;
+  grouping?: number;
+  issuer?: string;
+  light_mode?: number;
+  limit?: number;
+  maker?: string;
+  name?: string;
+  nsfw_mode?: string;
+  offset?: number;
+  only_verified?: number;
+  order_by?: string;
+  order_direction?: string;
+  owner?: string;
+  price_similar?: number;
+  price_similar_delta?: number;
+  quote_symbol?: string;
+  series_id?: string;
+  status?: string;
+  symbol?: string;
+  token_id?: string;
+  with_total?: number;
+}
+
+/**
  * Query interface for Collections
  */
 export interface CollectionsQuery {

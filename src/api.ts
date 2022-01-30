@@ -9,6 +9,7 @@ import {
   SITE_HOST_RINKEBY,
 } from './constants';
 import {
+  AssetsQuery,
   CollectionsQuery,
   GhostMarketAPIConfig,
   Network,
@@ -69,6 +70,35 @@ export class GhostMarketAPI {
 
     // Debugging: default to nothing
     this.logger = logger || ((arg: string) => arg);
+  }
+
+  /** Get NFT assets available on the GhostMarket marketplace, throwing if none is found.
+   * @param query Query to use for getting assets.
+   */
+  public async getAssets(
+    query: AssetsQuery = {},
+    offset: number = 0,
+    order_by: string = 'id',
+    order_direction: string = 'asc',
+    with_total: number = 0,
+    limit: number = 50,
+    fiat_currency: string = 'USD',
+    auction_state: string = 'all',
+    auction_started: string = 'all',
+    ligt_mode: number = 0,
+  ): Promise<Record<string, unknown>> {
+    console.log('Inside getAssets!');
+    const result = await this.get(`${API_PATH}/assets/`, {
+      limit: limit,
+      offset: offset,
+      order_by: order_by,
+      order_direction: order_direction,
+      with_total: with_total,
+      ...query,
+    });
+
+    const json = result as Record<string, unknown>;
+    return json;
   }
 
   /** Get NFT collection available on the GhostMarket marketplace, throwing if none is found.
