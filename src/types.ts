@@ -114,3 +114,19 @@ export interface UsersQuery {
   with_sales_statistics?: number;
   with_total?: number;
 }
+
+/**
+ * Query interface for Series
+ */
+export interface SeriesQuery {
+  chain?: string;
+  contract?: string;
+  creator?: string;
+  id?: string;
+  limit?: number;
+  name?: string;
+  offset?: number;
+  order_by?: string;
+  order_direction?: string;
+  symbol?: string;
+}

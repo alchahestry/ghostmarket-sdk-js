@@ -13,6 +13,7 @@ import {
   GhostMarketAPIConfig,
   Network,
   OrderQuery,
+  SeriesQuery,
   UsersQuery,
 } from './types';
 
@@ -85,6 +86,9 @@ export class GhostMarketAPI {
     const result = await this.get(`${API_PATH}/collections/`, {
       limit: limit,
       offset: offset,
+      order_by: order_by,
+      order_direction: order_direction,
+      with_total: with_total,
       ...query,
     });
 
@@ -108,6 +112,10 @@ export class GhostMarketAPI {
     const result = await this.get(`${API_PATH}/users/`, {
       limit: limit,
       offset: offset,
+      order_by: order_by,
+      order_direction: order_direction,
+      with_sales_statistics: with_sales_statistics,
+      with_total: with_total,
       ...query,
     });
 
@@ -161,6 +169,29 @@ export class GhostMarketAPI {
     const result = await this.get(`${API_PATH}/openorders/`, {
       limit: this.pageSize,
       offset: (page - 1) * this.pageSize,
+      ...query,
+    });
+
+    const json = result as Record<string, unknown>;
+    return json;
+  }
+
+  /** Get NFT serices available on the GhostMarket marketplace, throwing if none is found.
+   * @param query Query to use for getting users.
+   */
+  public async getSeries(
+    query: SeriesQuery = {},
+    offset: number = 0,
+    order_by: string = 'id',
+    order_direction: string = 'asc',
+    limit: number = 50,
+  ): Promise<Record<string, unknown>> {
+    console.log('Inside getSeries!');
+    const result = await this.get(`${API_PATH}/series/`, {
+      limit: limit,
+      offset: offset,
+      order_by: order_by,
+      order_direction: order_direction,
       ...query,
     });
 
