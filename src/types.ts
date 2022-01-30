@@ -217,9 +217,9 @@ export interface SeriesQuery {
 }
 
 /**
- * Query interface for TokenURI
+ * Interface for basic Token information.
  */
-export interface TokenURIQuery {
+ export interface TokenMetadata {
   chain?: string;
   contract?: string;
   token_id?: string;

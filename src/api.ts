@@ -17,7 +17,7 @@ import {
   OrderQuery,
   SeriesQuery,
   StatisticsQuery,
-  TokenURIQuery,
+  TokenMetadata,
   UsersQuery,
 } from './types';
 
@@ -168,6 +168,21 @@ export class GhostMarketAPI {
     return json;
   }
 
+  /** Get NFT Metadata, throwing if none is found.
+   * @param query Query to use for getting NFT metadata.
+   */
+  public async getMetadata(
+    query: TokenMetadata = {},
+  ): Promise<string> {
+    console.log('Inside getMetadata!');
+    const result = await this.get(`${API_PATH}/metadata/`, {
+      ...query,
+    });
+
+    const json = result as string;
+    return json;
+  }
+
   /** Get order from the orderbook, throwing if none is found.
    * @param query Query to use for getting orders. A subset of parameters
    *  on the `OrderJSON` type is supported
@@ -282,7 +297,7 @@ export class GhostMarketAPI {
    * @param query Query to use for getting Token URI.
    */
   public async getTokenURI(
-    query: TokenURIQuery = {},
+    query: TokenMetadata = {},
   ): Promise<Record<string, unknown>> {
     console.log('Inside getTokenURI!');
     const result = await this.get(`${API_PATH}/tokenuri/`, {
