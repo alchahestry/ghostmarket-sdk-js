@@ -145,6 +145,47 @@ export interface OrderbookResponse {
 }
 
 /**
+ * Query interface for Series
+ */
+export interface SeriesQuery {
+  chain?: string;
+  contract?: string;
+  creator?: string;
+  id?: string;
+  limit?: number;
+  name?: string;
+  offset?: number;
+  order_by?: string;
+  order_direction?: string;
+  symbol?: string;
+}
+
+/**
+ * Query interface for Statistics
+ */
+ export interface StatisticsQuery {
+  chain?: string;
+  collection_slug?: string;
+  currency?: string;
+  limit?: number;
+  offset?: number;
+  order_by?: string;
+  order_direction?: string;
+  with_collections_daily_stats?: number;
+  with_collections_weekly_stats?: number;
+  with_collections_monthly_stats?: number;
+  with_collections_total_stats?: number;
+  with_chains_daily_stats?: number;
+  with_chains_weekly_stats?: number;
+  with_chains_monthly_stats?: number;
+  with_chains_total_stats?: number;
+  with_marketplace_daily_stats?: number;
+  with_marketplace_weekly_stats?: number;
+  with_marketplace_monthly_stats?: number;
+  with_marketplace_total_stats?: number;
+}
+
+/**
  * Query interface for Users
  */
 export interface UsersQuery {
@@ -160,20 +201,4 @@ export interface UsersQuery {
   verified?: boolean;
   with_sales_statistics?: number;
   with_total?: number;
-}
-
-/**
- * Query interface for Series
- */
-export interface SeriesQuery {
-  chain?: string;
-  contract?: string;
-  creator?: string;
-  id?: string;
-  limit?: number;
-  name?: string;
-  offset?: number;
-  order_by?: string;
-  order_direction?: string;
-  symbol?: string;
 }
