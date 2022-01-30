@@ -40,13 +40,21 @@ export interface Order {
 }
 
 /**
+ * Query interface for finding project with Open Minting
+ */
+export interface OpenMintingsQuery {
+  offset?: number;
+  limit?: number;
+}
+
+/**
  * Query interface for Orders
  */
 export interface OrderQuery {
   chain?: string;
   contract?: string;
   token_id?: string;
-  offset?: number | string;
+  offset?: number;
   limit?: number;
   with_deleted?: boolean;
 }
