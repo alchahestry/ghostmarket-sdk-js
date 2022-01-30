@@ -14,6 +14,7 @@ import {
   EventsQuery,
   GhostMarketAPIConfig,
   Network,
+  OrderBase,
   OrderQuery,
   SeriesQuery,
   StatisticsQuery,
@@ -180,6 +181,21 @@ export class GhostMarketAPI {
     });
 
     const json = result as string;
+    return json;
+  }
+
+  /** Get Open Orders on the GhostMarket marketplace, throwing if none is found.
+   * @param query Query to use for getting NFT metadata.
+   */
+  public async getOpenOrders(
+    query: OrderBase = {},
+  ): Promise<Record<string, unknown>> {
+    console.log('Inside getOpenOrders!');
+    const result = await this.get(`${API_PATH}/openorders/`, {
+      ...query,
+    });
+
+    const json = result as Record<string, unknown>;
     return json;
   }
 
