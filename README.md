@@ -21,7 +21,7 @@ Ghost Market is constantly innovating. This means the underlying API that this S
  
 ## Order Management
  
-* List and search open orders - GET - `/api/v1/openorders`
+* ~~List and search open orders - GET - `/api/v1/openorders`~~
 * Create an order - POST - `/api/v1/createopenorder`
 * Remove open order - POST - `/api/v1/deleteopenorder`
 * List open orders - GET - `/api/v1/getopenorders`
@@ -30,7 +30,7 @@ Ghost Market is constantly innovating. This means the underlying API that this S
  
 * Create Mint - POST - `/api/v1/createopenmint`
 * Delete Mint -  POST - `/api/v1/deleteopenmint`
-* List open mints - GET - `/api/v1/openmintings`
+* ~~List open mints - GET - `/api/v1/openmintings`~~
 * List open mints - GET - `/api/v1/getopenmintings`
 
 
