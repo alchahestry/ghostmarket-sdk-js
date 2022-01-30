@@ -221,6 +221,21 @@ export class GhostMarketAPI {
     return json;
   }
 
+  /** Refresh Token Metadata on GhostMarket marketplace, throwing if none is found.
+   * @param query Query to use for refreshing the metadata of a specific token.
+   */
+  public async getRefreshMetadata(
+    query: TokenMetadata = {},
+  ): Promise<Record<string, unknown>> {
+    console.log('Inside getRefreshMetadata!');
+    const result = await this.get(`${API_PATH}/refreshmetadata/`, {
+      ...query,
+    });
+
+    const json = result as Record<string, unknown>;
+    return json;
+  }
+
   /** Get NFT serices available on the GhostMarket marketplace, throwing if none is found.
    * @param query Query to use for getting users.
    */
